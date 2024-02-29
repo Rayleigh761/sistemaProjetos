@@ -1,9 +1,10 @@
 
 <div class="container-table">
-  <div >
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  <div>
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="inputFilter">
+      <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table100">
@@ -44,7 +45,7 @@
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        <td class="mat-cell tdNosearch" colspan="5">Nenhum dado correspondente ao filtro: "{{input.value}}"</td>
       </tr>
     </table>
     <mat-paginator class="mat-elevation-paginator matPaginator mat-cell" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
