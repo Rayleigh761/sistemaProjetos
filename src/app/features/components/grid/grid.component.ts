@@ -1,16 +1,12 @@
-import { AfterViewInit,Component,ViewChild } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { AfterViewInit,Component,ViewChild,OnInit  } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { colunasTabela } from '../../models/tableGrid/table-config';
+import { TableColumn } from '../../models/tableGrid/camposTable.model';
+import { infosProject } from '../../models/infosProject/infosProject.model';
 
-export interface PeriodicElement {
-  position: number;
-  numberProject: string;
-  nameProject: string;
-  dateOpen: string;
-  statusProject: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: infosProject[] = [
   {position: 1, numberProject: '3555', nameProject: 'SI CADASTRO – INTEGRAÇÃO DE SISTEMAS COM O PRESTADOR DWRPA PARA O RECEBIMENTO DE NOVAS AÇÕES', dateOpen: '10/02/2020', statusProject: 'To Do'},
   {position: 2, numberProject: '3558', nameProject: 'TELEFÔNICA TRABALHISTA - CRIAÇÃO DE UM MODELO PREDITIVO DE ADVOCACIA PREDATÓRIA COM APRENDIZADO DE MÁQUINA SUPERVISIONADO', dateOpen: '10/02/2020', statusProject: 'Doing'},
   {position: 3, numberProject: '3855', nameProject: 'SI PUBLICAÇÃO – INTEGRAÇÃO DE SISTEMAS COM O PRESTADOR DWRPA PARA O RECEBIMENTO DE INTIMAÇÕES', dateOpen: '10/02/2020', statusProject: 'Adjust'},
@@ -24,6 +20,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 
+
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -31,10 +28,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 
-export class GridComponent implements AfterViewInit {
+export class GridComponent implements OnInit,AfterViewInit {
 
-  displayedColumns: string[] = ['position', 'numberProject', 'name','date', 'status'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedTableColumns: TableColumn[] = colunasTabela;
+  displayedColumns: string[] = ['position','numberProject','nameProject','dateOpen','statusProject'];
+  dataSource = new MatTableDataSource<infosProject>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -48,6 +46,8 @@ export class GridComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
+  ngOnInit(): void {
+    this.displayedTableColumns = colunasTabela
+  }
 
 }

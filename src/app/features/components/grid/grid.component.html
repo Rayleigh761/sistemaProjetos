@@ -1,0 +1,27 @@
+
+<div class="container-table">
+  <div>
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input class="inputFilter">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table100">
+
+      <ng-container *ngFor="let column of displayedTableColumns" [matColumnDef]="column.field">
+        <th mat-header-cell *matHeaderCellDef> {{ column.header }} </th>
+        <td mat-cell *matCellDef="let element"> {{ element[column.field] }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell tdNosearch" colspan="5">Nenhum dado correspondente ao filtro: "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator class="mat-elevation-paginator matPaginator mat-cell" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
+</div>
