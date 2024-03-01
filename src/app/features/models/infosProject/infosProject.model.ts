@@ -1,6 +1,6 @@
-export interface infosProject {
+export interface InfosProject {
   position: number;
-  numberProject: string;
+  cd_solicitacao: string;
   nameProject: string;
   dateOpen: string;
   statusProject: string;

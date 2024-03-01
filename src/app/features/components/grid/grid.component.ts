@@ -1,44 +1,52 @@
-import { AfterViewInit,Component,ViewChild,OnInit  } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { colunasTabela } from '../../models/tableGrid/table-config';
 import { TableColumn } from '../../models/tableGrid/camposTable.model';
-import { infosProject } from '../../models/infosProject/infosProject.model';
-
-
-const ELEMENT_DATA: infosProject[] = [
-  {position: 1, numberProject: '3555', nameProject: 'SI CADASTRO – INTEGRAÇÃO DE SISTEMAS COM O PRESTADOR DWRPA PARA O RECEBIMENTO DE NOVAS AÇÕES', dateOpen: '10/02/2020', statusProject: 'To Do'},
-  {position: 2, numberProject: '3558', nameProject: 'TELEFÔNICA TRABALHISTA - CRIAÇÃO DE UM MODELO PREDITIVO DE ADVOCACIA PREDATÓRIA COM APRENDIZADO DE MÁQUINA SUPERVISIONADO', dateOpen: '10/02/2020', statusProject: 'Doing'},
-  {position: 3, numberProject: '3855', nameProject: 'SI PUBLICAÇÃO – INTEGRAÇÃO DE SISTEMAS COM O PRESTADOR DWRPA PARA O RECEBIMENTO DE INTIMAÇÕES', dateOpen: '10/02/2020', statusProject: 'Adjust'},
-  {position: 4, numberProject: '3525', nameProject: 'GESTÃO HOLDING (PROJETOS ESPECIAIS) – CRIAÇÃO DE ABA', dateOpen: '10/02/2020', statusProject: 'Test'},
-  {position: 5, numberProject: '3325', nameProject: 'TELEFÔNICA (GESTÃO DE CONTRATOS) – CRIAÇÃO DE ABA', dateOpen: '10/02/2020', statusProject: 'Validade'},
-  {position: 6, numberProject: '3552', nameProject: 'SODEXO TRABALHISTA – CRIAÇÃO DE UM NOVO RELATÓRIO DE PAUTA DE AUDIÊNCIAS', dateOpen: '10/02/2020', statusProject: 'Validate'},
-  {position: 7, numberProject: '4554', nameProject: 'CANE AGROBOX - AJUSTES NA ABA E INTEGRAÇÃO DE SISTEMAS PARA O ENVIO DOS CONTRATOS A SEREM REGISTRADOS', dateOpen: '10/02/2020', statusProject: 'Done'},
-  {position: 8, numberProject: '2055', nameProject: 'AMIL (CÍVEL) – CRIAÇÃO DA FLAG PROCESSO ENCONTRADO E INCLUSÃO EM RELATÓRIO CUSTOMIZADO', dateOpen: '10/02/2020', statusProject: 'Doing'},
-  {position: 9, numberProject: '2452', nameProject: 'SEA GROUP (CONTENCIOSO) – CRIAÇÃO DO MÓDULO DATA DA PUBLICAÇÃO, RESULTADO SENTENÇA, ACÓRDÃO E RELATÓRIO CUSTOMIZADO', dateOpen: '10/02/2020', statusProject: 'Test'},
-  {position: 10, numberProject: '1502', nameProject: 'TAM TRABALHISTA – INCLUSÃO DE CAMPOS NO MÓDULO TESTEMUNHA E RELATÓRIO CUSTOMIZADO', dateOpen: '10/02/2020', statusProject: 'Done'},
-];
-
-
+import { InfosProject } from '../../models/infosProject/infosProject.model';
+import { GridService } from '../../service/grid.service';
+import { MatSort } from '@angular/material/sort';
+import { ModalInfosComponent } from '../modal-infos/modal-infos.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css']
+  styleUrls: ['./grid.component.css'],
 })
-
-
-export class GridComponent implements OnInit,AfterViewInit {
-
+export class GridComponent implements OnInit, AfterViewInit {
   displayedTableColumns: TableColumn[] = colunasTabela;
-  displayedColumns: string[] = ['position','numberProject','nameProject','dateOpen','statusProject'];
-  dataSource = new MatTableDataSource<infosProject>(ELEMENT_DATA);
+  displayedColumns: string[] = [
+    'cd_solicitacao',
+    'ds_solicitacao_titulo',
+    'ds_grupo_cliente',
+    'ds_login',
+    'ds_status',
+    'dt_solicitacao',
+  ];
+  dataSource = new MatTableDataSource<InfosProject>();
+  infosProjects: InfosProject[] = [];
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private gridService: GridService, public dialog: MatDialog) {}
+  ngOnInit(): void {
+    this.displayedTableColumns = colunasTabela;
+    this.buscarProjetos();
+  }
+
+  buscarProjetos() {
+    this.gridService.getProjetos().subscribe((infos: InfosProject[]) => {
+      this.infosProjects = infos;
+      this.dataSource.data = this.infosProjects;
+    });
+  }
 
   ngAfterViewInit() {
+    this.dataSource.data = this.infosProjects;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -46,8 +54,12 @@ export class GridComponent implements OnInit,AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit(): void {
-    this.displayedTableColumns = colunasTabela
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalInfosComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

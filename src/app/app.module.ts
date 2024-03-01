@@ -3,28 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MaterialModule } from './shared/material/material.module';
 import { GridComponent } from './features/components/grid/grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalInfosComponent } from "./features/components/modal-infos/modal-infos.component";
+import { InfosProjetosComponent } from './features/components/infos-projetos/infos-projetos.component';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GridComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatIconModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+      AppComponent,
+      GridComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      ModalInfosComponent,
+      MaterialModule,
+    ]
 })
 export class AppModule { }
