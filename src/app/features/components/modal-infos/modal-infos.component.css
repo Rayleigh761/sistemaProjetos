@@ -1,0 +1,6 @@
+
+.my-custom-modal {
+  max-height: 800px; /* Ajuste o valor conforme necessário */
+  height: 100%; /* Ajuste o valor conforme necessário */
+  width: auto;
+}

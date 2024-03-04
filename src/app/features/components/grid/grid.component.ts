@@ -7,7 +7,8 @@ import { InfosProject } from '../../models/infosProject/infosProject.model';
 import { GridService } from '../../service/grid.service';
 import { MatSort } from '@angular/material/sort';
 import { ModalInfosComponent } from '../modal-infos/modal-infos.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-grid',
@@ -55,11 +56,10 @@ export class GridComponent implements OnInit, AfterViewInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ModalInfosComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true; // Impede que o modal seja fechado clicando fora dele
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(ModalInfosComponent, dialogConfig);
   }
 
 }

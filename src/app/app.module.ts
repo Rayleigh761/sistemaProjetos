@@ -8,7 +8,6 @@ import { GridComponent } from './features/components/grid/grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalInfosComponent } from "./features/components/modal-infos/modal-infos.component";
-import { InfosProjetosComponent } from './features/components/infos-projetos/infos-projetos.component';
 
 
 @NgModule({
@@ -25,6 +24,7 @@ import { InfosProjetosComponent } from './features/components/infos-projetos/inf
       HttpClientModule,
       ModalInfosComponent,
       MaterialModule,
+
     ]
 })
 export class AppModule { }
