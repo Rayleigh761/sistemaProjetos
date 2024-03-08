@@ -11,7 +11,7 @@
 
       <ng-container *ngFor="let column of displayedTableColumns" [matColumnDef]="column.field">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </th>
-        <td mat-cell *matCellDef="let element" (click)="openDialog()"> {{ element[column.field] }} </td>
+        <td mat-cell *matCellDef="let element" (click)="buscarProjetosId(element.cd_solicitacao)"> {{ element[column.field] }} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

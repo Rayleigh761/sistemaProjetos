@@ -18,4 +18,9 @@ export class GridService extends HttpBaseService {
     return this.httpGet(this.endpoint);
   }
 
+  getProjetosId(id: number):Observable<any>{
+    return this.httpGet(`${this.endpoint}/${id}`)
+  }
+
+
 }
