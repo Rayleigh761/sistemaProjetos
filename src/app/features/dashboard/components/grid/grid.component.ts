@@ -74,7 +74,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
 
     })
-    //debugger
+    debugger
   }
 
 
