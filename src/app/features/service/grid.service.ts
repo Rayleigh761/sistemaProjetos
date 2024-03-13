@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpBaseService } from 'src/app/shared/base/http-base.service';
+//import { InfosProjectModal } from '../dashboard/models/infosProjetoModal/infosProjetoModal.model';
 
 
 @Injectable({

@@ -1,4 +1,4 @@
-import { Component,OnInit  } from '@angular/core';
+import { Component,OnInit,ViewChild  } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 
 @Component({
@@ -6,8 +6,9 @@ import { FormGroup,FormBuilder,Validators } from '@angular/forms';
   templateUrl: './infos-projetos.component.html',
   styleUrls: ['./infos-projetos.component.css']
 })
-export class InfosProjetosComponent implements OnInit  {
+export class InfosProjetosComponent  implements OnInit {
   formEntradas!: FormGroup;
+
 
   constructor(
     private formBuilder: FormBuilder
@@ -18,10 +19,15 @@ export class InfosProjetosComponent implements OnInit  {
     this.formEntradas = this.formBuilder.group({
       desc_projetos: ['', Validators.required]
     });
+
+    return this.formEntradas
+
   }
 
   ngOnInit(): void {
     this.criarFormulario();
+    console.log(this.formEntradas)
+    //debugger
   }
 
 }

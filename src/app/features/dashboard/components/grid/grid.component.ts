@@ -26,14 +26,7 @@ export class GridComponent implements OnInit, AfterViewInit {
   infosProjects: InfosProject[] = [];
   infosProjectsModal!: InfosProjectModal;
   displayedTableColumns: TableColumn[] = colunasTabela;
-  displayedColumns: string[] = [
-    'cd_solicitacao',
-    'ds_solicitacao_titulo',
-    'ds_grupo_cliente',
-    'ds_login',
-    'ds_status',
-    'dt_solicitacao',
-  ];
+  displayedColumns: string[] = ['cd_solicitacao','ds_solicitacao_titulo','ds_grupo_cliente','ds_login','ds_status','dt_solicitacao'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -45,14 +38,15 @@ export class GridComponent implements OnInit, AfterViewInit {
   ) {}
 
   buscarProjetos() {
-    this.gridService.getProjetos()
+    this.gridService
+    .getProjetos()
     .subscribe((infos: InfosProject[]) => {
       this.infosProjects = infos;
       this.dataSource.data = this.infosProjects;
     });
   }
 
-  buscarProjetosId(id: any) {
+  buscarProjetosId(id: number) {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true; // Impede que o modal seja fechado clicando fora dele
@@ -61,31 +55,44 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     this.gridService
     .getProjetosId(id)
-    .subscribe((infosProjectsModal: InfosProjectModal) => {
-      this.infosProjectsModal = infosProjectsModal;
+    .subscribe((infosProjectsModal: InfosProjectModal | InfosProjectModal[]) => {
 
-      console.log(infosProjectsModal.cd_custo)
 
-      debugger
-      this.infosPro.formEntradas.controls['desc_projetos'].setValue(infosProjectsModal.cd_custo)
+      if (Array.isArray(infosProjectsModal)) {
+        this.infosProjectsModal = infosProjectsModal[0];
+      } else {
+        this.infosProjectsModal = infosProjectsModal;
+      }
 
+      console.log(this.infosProjectsModal);
+      console.log(this.infosProjectsModal?.ds_grupo_cliente);
+
+      //debugger
+      if (this.infosPro && this.infosPro.formEntradas) {
+        this.infosPro.formEntradas.controls['desc_projetos'].setValue(this.infosProjectsModal?.ds_grupo_cliente);
+      }
 
 
     })
+    //debugger
+  }
 
 
-
+  infosTest(){
+    console.log('aqui foi')
   }
 
   ngOnInit(): void {
     this.displayedTableColumns = colunasTabela;
     this.buscarProjetos();
+    console.log('aqui ' + this.infosPro)
   }
 
   ngAfterViewInit() {
     this.dataSource.data = this.infosProjects;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
   }
 
   applyFilter(event: Event) {
