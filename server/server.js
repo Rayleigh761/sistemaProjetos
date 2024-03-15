@@ -42,15 +42,20 @@ app.get('/projetos/:id', async (req, res) => {
   try {
 
     const { id } = req.params; // Obtém o ID da URL
-
     const pool = db.pool;  // Obtém a referência do pool
     // Garante que a conexão esteja aberta
     if (!pool.connected) {
       await db.connect();
     }
-
     const result = await pool.request().input('id', id).query('PROJETOS.[dbo].[proc_projetos_informacoes_New] @opcao = "getProjetosId", @cd_projeto = @id');
-    res.json(result.recordset);
+    let responseData = result.recordset;
+    // Verifica se a resposta é um array com um único objeto
+    if (Array.isArray(responseData) && responseData.length === 1) {
+      // Ajusta a resposta para ser o objeto em si, não o array
+      responseData = responseData[0];
+    }
+
+    res.json(responseData);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

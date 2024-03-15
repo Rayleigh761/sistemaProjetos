@@ -4,19 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material/material.module';
-import { GridComponent } from './features/dashboard/components/grid/grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ModalInfosComponent } from "./features/dashboard/components/modal-infos/modal-infos.component";
-import { InfosProjetosComponent } from './features/dashboard/components/infos-projetos/infos-projetos.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ToolbarComponent } from './commom/components/toolbar/toolbar.component';
 
 @NgModule({
     declarations: [
       AppComponent,
-      GridComponent,
-      ModalInfosComponent,
-      InfosProjetosComponent
+      ToolbarComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -25,8 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       AppRoutingModule,
       BrowserAnimationsModule,
       HttpClientModule,
-      MaterialModule,
-      ReactiveFormsModule,
+      MaterialModule
     ]
 })
 export class AppModule { }

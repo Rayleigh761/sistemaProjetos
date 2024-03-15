@@ -2,11 +2,23 @@
   box-sizing: border-box;
 }
 
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
 .form-group {
   width: 100%;
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
   margin-bottom: 15px;
 }
 
@@ -20,6 +32,9 @@ label {
   border-radius: 10px;
   border: 1px solid rgb(172, 172, 172);
   padding: 20px;
+  width: 100%;
+  margin-top: 10px;
+  resize: vertical;
 }
 
 .selectStyle {
@@ -42,31 +57,82 @@ select.selectStyle:disabled{
 }
 
 .container {
-  display: inline-block;
-  margin-right: 20px;
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os itens verticalmente */
+  margin: 15px 20px 20px;
 }
 
 .container label {
   display: block;
 }
 
-.form-group-Select .form-group-input {
+
+.form-group-Select, .form-group-input {
+  display: flex;
+  justify-content: space-between; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
   width: 100%;
   margin-top: 10px;
 }
 
 .inputStyle {
-  width: 250px;
+  width: calc(100% - 10px);
   height: 30px;
   border: 1px solid rgb(172, 172, 172);
   border-radius: 0.25rem;
   color: #495057;
   text-align: left;
-  padding-left: 10px;
+
 }
 
 .inputStyle:disabled{
   background-color: #fafafa;
   opacity: 1;
+}
+
+.example-stretched-tabs {
+  max-width: 100%;
+}
+
+.example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 300px;
+  width: 300px;
+}
+
+.example-button-row {
+  position: fixed;
+  bottom: 20px; /* ou a distância que desejar do rodapé */
+  left: 20px; /* ou a distância que desejar da esquerda */
+  z-index: 999; /* ajuste conforme necessário */
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
 }
