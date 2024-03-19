@@ -61,5 +61,40 @@ app.get('/projetos/:id', async (req, res) => {
   }
 });
 
+app.get('/bibliotecas/:status', async (req, res) => {
+  try {
+
+    const { status } = req.params; // Obtém o ID da URL
+    const pool = db.pool;  // Obtém a referência do pool
+    // Garante que a conexão esteja aberta
+    if (!pool.connected) {
+      await db.connect();
+    }
+    const result = await pool.request().input('status', status).query('PROJETOS.[dbo].[proc_biblioteca_Sistema_projetos] @opcao = "getStatus", @cd_status = @status');
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/:bibliotecas', async (req, res) => {
+  try {
+
+    const { bibliotecas } = req.params; // Obtém o ID da URL
+    const pool = db.pool;  // Obtém a referência do pool
+    // Garante que a conexão esteja aberta
+    if (!pool.connected) {
+      await db.connect();
+    }
+
+    //const result = await pool.request().query(`PROJETOS.[dbo].[proc_biblioteca_Sistema_projetos] @opcao = 'getAnalistas'`);
+    const result = await pool.request().input('bibliotecas', bibliotecas).query('PROJETOS.[dbo].[proc_biblioteca_Sistema_projetos] @opcao = @bibliotecas');
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 
 module.exports = router;

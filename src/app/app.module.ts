@@ -7,13 +7,15 @@ import { MaterialModule } from './shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToolbarComponent } from './commom/components/toolbar/toolbar.component';
+import { LOCALE_ID } from '@angular/core';
+
 
 @NgModule({
     declarations: [
       AppComponent,
       ToolbarComponent
     ],
-    providers: [],
+    providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
     bootstrap: [AppComponent],
     imports: [
       BrowserModule,

@@ -1,4 +1,4 @@
-import { TableColumn } from "./camposTable.model";
+import { TableColumn } from "./tableGrid/camposTable.model";
 
 export const colunasTabela: TableColumn[] = [
   { header: 'Codigo', field: 'cd_solicitacao' },

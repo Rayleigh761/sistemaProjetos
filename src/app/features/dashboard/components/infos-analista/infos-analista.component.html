@@ -1,0 +1,15 @@
+<div class="container-table">
+  <div>
+    <table mat-table [dataSource]="dataSource" class="table100 demo-table" matSort>
+
+      <ng-container *ngFor="let column of displayedTableColumns" [matColumnDef]="column.field">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </th>
+        <td mat-cell *matCellDef="let element"> {{ element[column.field] }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator class="mat-elevation-paginator matPaginator mat-cell" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
+</div>

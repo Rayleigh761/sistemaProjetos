@@ -1,32 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
 .container-table {
-  width: 100%;
-  min-height: 50vh;
+  width: auto;
+  min-height: 15vh;
   background: #fff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 33px 30px;
+
 }
 
 .table100 {
@@ -60,10 +40,8 @@ table {
 
 .table100 td:nth-child(2),
 .table100 th:nth-child(2) {
-  width: 750px;
   white-space: nowrap;
 }
-
 
 .matPaginator {
   -webkit-border-bottom-right-radius: 10px;
@@ -75,32 +53,6 @@ table {
 }
 
 .mat-elevation-paginator {
-  box-shadow:
-    0px 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0px 5px 0px 5px rgba(0, 0, 0, 0.014);
   color: gray;
   background-color: #f2f2f2;
-}
-
-.filter {
-  background-color: #ffffff;
-  border-radius: 10px;
-  margin: 0px 0px 10px 0px;
-}
-
-.tdNosearch {
-  padding: 30px 10px 30px 10px;
-}
-
-.mat-mdc-row .mat-mdc-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
-}
-
-.mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-  background-color: #fafafa;
-  color: #000;
 }

@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 
-import { colunasTabela } from '../../models/tableGrid/table-config';
+import { colunasTabela } from '../../models/table-config';
 import { TableColumn } from '../../models/tableGrid/camposTable.model';
 import { InfosProject } from '../../models/infosProject/infosProject.model';
 

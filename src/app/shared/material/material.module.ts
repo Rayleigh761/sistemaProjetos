@@ -9,7 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -23,7 +26,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatDialogModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     MatSortModule,
@@ -34,7 +40,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatDialogModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
 })
 export class MaterialModule {}

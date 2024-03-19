@@ -2,13 +2,6 @@
   box-sizing: border-box;
 }
 
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
 .center {
   display: flex;
   flex-direction: row;
@@ -22,78 +15,45 @@
   margin-bottom: 15px;
 }
 
+.textAreainfos{
+  overflow-y: hidden;
+}
+
 label {
   margin-bottom: 5px; /* Espaçamento entre o label e a textarea */
   color: #212121;
   font-size: 15px;
 }
 
-.textAreainfos{
-  border-radius: 10px;
-  border: 1px solid rgb(172, 172, 172);
-  padding: 20px;
+.example-full-width{
   width: 100%;
   margin-top: 10px;
   resize: vertical;
 }
 
-.selectStyle {
-  width: 520px;
-  height: 30px;
-  border: 1px solid rgb(172, 172, 172);
-  border-radius: 0.25rem;
-  color: #495057;
-  text-align: left;
-  padding-left: 10px;
-}
-
-.selectStyle option {
-  color: #495057;
-}
-
-select.selectStyle:disabled{
-  background-color: #fafafa;
-  opacity: 1;
-}
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza os itens verticalmente */
-  margin: 15px 20px 20px;
+  margin: 15px 20px 0px;
 }
-
-.container label {
-  display: block;
-}
-
 
 .form-group-Select, .form-group-input {
   display: flex;
-  justify-content: space-between; /* Centraliza os itens horizontalmente */
+  justify-content: left; /* Centraliza os itens horizontalmente */
   align-items: center; /* Centraliza os itens verticalmente */
-  width: 100%;
-  margin-top: 10px;
 }
 
-.inputStyle {
-  width: calc(100% - 10px);
-  height: 30px;
-  border: 1px solid rgb(172, 172, 172);
-  border-radius: 0.25rem;
-  color: #495057;
-  text-align: left;
-
+.forms {
+  width: 248px;
 }
 
-.inputStyle:disabled{
-  background-color: #fafafa;
-  opacity: 1;
+.mat-form-field {
+  width: 100%
 }
 
 .example-stretched-tabs {
   max-width: 100%;
 }
+
 
 .example-small-box, .example-large-box {
   display: flex;

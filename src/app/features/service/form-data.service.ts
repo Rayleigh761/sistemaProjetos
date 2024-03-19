@@ -1,19 +1,33 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpBaseService } from 'src/app/shared/base/http-base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FormDataService {
-  private formData = new BehaviorSubject<any>(null);
+export class FormDataService extends HttpBaseService {
 
-  constructor() { }
+  private endpointProjeto = 'projetos';
+  private endpointBibi = 'bibliotecas';
 
-  setFormData(data: any) {
-    this.formData.next(data);
+  constructor(protected override readonly injector: Injector) {
+    super(injector);
   }
 
-  getFormData() {
-    return this.formData.asObservable();
+  getProjetosId(id: number):Observable<any>{
+    return this.httpGet(`${this.endpointProjeto}/${id}`)
   }
+
+  getBibiStatus(status: number):Observable<any>{
+    return this.httpGet(`${this.endpointBibi}/${status}`)
+  }
+
+  getBibiAnalista():Observable<any>{
+    return this.httpGet(`getAnalistas`)
+  }
+
+  getBibiTecnologia():Observable<any>{
+    return this.httpGet(`getTiposTecnlogias`)
+  }
+
 }
