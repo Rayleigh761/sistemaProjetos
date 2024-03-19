@@ -1,11 +1,12 @@
 import { Component,OnInit } from '@angular/core';
 import { FormGroup,FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormDataService } from './../../../service/form-data.service';
+import { FormDataService } from '../../../service/serviceForms/form-data.service';
 import { InfoProject } from '../../models/infoProject/infoProject.model';
 import { BibStatus } from '../../models/bibliotecas/bibStatusAtual.model';
 import { BibAnalistas } from '../../models/bibliotecas/bibAnalistas.model';
 import { BibTecnologia } from '../../models/bibliotecas/bibTipoTecnologia';
+import { BibAreas } from '../../models/bibliotecas/bibAreas';
 
 @Component({
   selector: 'app-infos-projetos',
@@ -17,6 +18,7 @@ export class InfosProjetosComponent  implements OnInit {
   bibStatus: BibStatus[] = [];
   bibAnalistas: BibAnalistas[] = [];
   bibTecnologia: BibTecnologia[] = [];
+  bibAreas: BibAreas[] = [];
   formEntradas!: FormGroup;
   infoProjeto!: InfoProject;
   id: string = '';
@@ -37,6 +39,7 @@ export class InfosProjetosComponent  implements OnInit {
     this.buscarProjetoPeloId();
     this.bibliotecaAnalista();
     this.bibliotecaTecnologia();
+    this.bibliotecaAreas();
     //console.log(this.formEntradas)
     //debugger
   }
@@ -81,6 +84,14 @@ export class InfosProjetosComponent  implements OnInit {
 
   }
 
+  bibliotecaAreas() {
+    this.projetoService
+    .getBibiAreas()
+    .subscribe((bibAreas: BibAreas[]) => {
+      this.bibAreas = bibAreas
+    })
+
+  }
 
   criarFormulario() {
     this.formEntradas = this.formBuilder.group({

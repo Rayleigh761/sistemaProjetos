@@ -96,3 +96,15 @@ label {
   justify-content: center;
   width: 120px;
 }
+
+.example-large-button {
+  display: flex;
+  justify-content: left;
+  margin-left: 26%;
+  margin-right: 26%;
+  padding: 10px 10px;
+}
+
+.example-large-button button{
+  margin-right: 8px;
+}

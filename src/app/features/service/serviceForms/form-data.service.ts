@@ -30,4 +30,8 @@ export class FormDataService extends HttpBaseService {
     return this.httpGet(`getTiposTecnlogias`)
   }
 
+  getBibiAreas():Observable<any>{
+    return this.httpGet(`getTiposAreas`)
+  }
+
 }

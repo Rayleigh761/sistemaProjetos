@@ -1,8 +1,9 @@
 import { TableColumn } from './../tableGrid/camposTable.model';
 
 export const ColunasTabelaAnalistas: TableColumn[] = [
-  { header: 'Tipo', field: 'cd_solicitacao' },
-  { header: 'Esforço Estimado', field: 'ds_solicitacao_titulo' },
-  { header: 'Resposável', field: 'ds_grupo_cliente' },
-  { header: 'Esforço Gasto', field: 'ds_login' },
+  { header: 'Tipo', field: 'DS_Tipo_Area' },
+  { header: 'Área', field: 'DS_Tipo_Tecnologia' },
+  { header: 'Esforço Estimado', field: 'qtd_dias' },
+  { header: 'Resposável', field: 'DS_NOME' },
+  { header: 'Esforço Gasto', field: 'qtd_dias_real' },
 ];

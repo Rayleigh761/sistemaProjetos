@@ -43,7 +43,16 @@
             <mat-form-field appearance="outline" class="mat-form-field">
               <mat-label>Tipo</mat-label>
               <mat-select>
-                <mat-option *ngFor="let tecnologia of bibTecnologia" [value]="tecnologia.CD_Tipo_Tecnologia">{{tecnologia.DS_Tipo_Tecnologia}}</mat-option>
+                <mat-option *ngFor="let tipo of bibAreas" [value]="tipo.CD_Tipo_Area">{{tipo.DS_Tipo_Area}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="container forms">
+            <mat-form-field appearance="outline" class="mat-form-field">
+              <mat-label>Área</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let area of bibTecnologia" [value]="area.CD_Tipo_Tecnologia">{{area.DS_Tipo_Tecnologia}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -61,29 +70,15 @@
         <div class="form-group-input">
           <div class="container forms" >
             <mat-form-field appearance="outline" class="mat-form-field">
-              <mat-label>Dias ASP</mat-label>
+              <mat-label>Dias</mat-label>
               <input matInput type="number">
             </mat-form-field>
           </div>
 
           <div class="container forms">
             <mat-form-field appearance="outline" class="mat-form-field">
-              <mat-label>Dias BD</mat-label>
-              <input matInput type="number">
-            </mat-form-field>
-          </div>
-
-          <div class="container forms">
-            <mat-form-field appearance="outline" class="mat-form-field">
-              <mat-label>Dias ASP Real</mat-label>
+              <mat-label>Dias Real</mat-label>
               <input matInput type="number" >
-            </mat-form-field>
-          </div>
-
-          <div class="container forms">
-            <mat-form-field appearance="outline" class="mat-form-field">
-              <mat-label>Dias BD Real</mat-label>
-              <input matInput type="number">
             </mat-form-field>
           </div>
         </div>
@@ -127,6 +122,14 @@
         </div>
       </form>
     </div>
+
+    <div class="example-large-button">
+      <button mat-flat-button color="primary">Adicionar</button>
+      <!--<button mat-flat-button color="primary">Atualizar</button>
+      <button mat-flat-button color="warn">Cancelar</button>-->
+    </div>
+
+
   </mat-tab>
   <mat-tab label="Long tab">
     <div class="example-large-box mat-elevation-z4">

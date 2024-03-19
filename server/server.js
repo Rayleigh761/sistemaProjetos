@@ -95,6 +95,21 @@ app.get('/:bibliotecas', async (req, res) => {
   }
 });
 
+app.get('/analista/:id', async (req, res) => {
+  try {
+
+    const { id } = req.params; // Obtém o ID da URL
+    const pool = db.pool;  // Obtém a referência do pool
+    // Garante que a conexão esteja aberta
+    if (!pool.connected) {
+      await db.connect();
+    }
+    const result = await pool.request().input('id', id).query('PROJETOS.[dbo].[proc_Infos_Responsaveis_Projetos] @opcao = "getInfosProjeto", @cd_projeto = @id');
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 module.exports = router;

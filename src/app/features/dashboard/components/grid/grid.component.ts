@@ -8,7 +8,7 @@ import { colunasTabela } from '../../models/table-config';
 import { TableColumn } from '../../models/tableGrid/camposTable.model';
 import { InfosProject } from '../../models/infosProject/infosProject.model';
 
-import { GridService } from '../../../service/grid.service';
+import { GridService } from '../../../service/serviceGrid/grid.service';
 
 @Component({
   selector: 'app-grid',
