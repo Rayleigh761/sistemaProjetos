@@ -22,16 +22,4 @@ export class FormDataService extends HttpBaseService {
     return this.httpGet(`${this.endpointBibi}/${status}`)
   }
 
-  getBibiAnalista():Observable<any>{
-    return this.httpGet(`getAnalistas`)
-  }
-
-  getBibiTecnologia():Observable<any>{
-    return this.httpGet(`getTiposTecnlogias`)
-  }
-
-  getBibiAreas():Observable<any>{
-    return this.httpGet(`getTiposAreas`)
-  }
-
 }

@@ -58,3 +58,53 @@
   color: gray;
   background-color: #f2f2f2;
 }
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.form-group {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.container {
+  margin: 15px 20px 0px;
+}
+
+.form-group-Select, .form-group-input {
+  display: flex;
+  justify-content: left; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+}
+
+
+.forms {
+  width: 248px;
+}
+
+.mat-form-field {
+  width: 100%
+}
+
+.example-stretched-tabs {
+  max-width: 100%;
+}
+
+.dvBtns {
+  margin: auto;
+}
+
+.example-large-button {
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px;
+}
+
+.example-large-button button{
+  margin-right: 8px;
+}
