@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,10 @@ export class HttpBaseService {
 
   protected httpGet(endpoint: string): Observable<any>{
     return this.httpClient.get(`${this.apiBase}${endpoint}`)
+  }
+
+  protected httpPost(endpoint: string, dados: any): Observable<any>{
+    return this.httpClient.post(`${this.apiBase}${endpoint}`, dados)
   }
 
 }

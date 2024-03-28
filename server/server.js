@@ -111,5 +111,33 @@ app.get('/analista/:id', async (req, res) => {
   }
 });
 
+app.post('/analista', async (req, res) => {
+  try {
+    // Supondo que os dados para inserção estejam no corpo da requisição
+
+    console.log(req.body);
+
+    const pool = db.pool; // Obtém a referência do pool
+    // Garante que a conexão esteja aberta
+    if (!pool.connected) {
+      await db.connect();
+    }
+
+    // Query de chamada da stored procedure
+
+
+    // Executa a query com os parâmetros
+    const result = await pool
+      .request()
+
+
+    res.status(201).json({ message: 'Inserção realizada com sucesso!' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 
 module.exports = router;

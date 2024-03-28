@@ -108,8 +108,14 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
       dt_inicioReal: dayjs(this.formAnalista.controls['dt_inicioReal'].value).format('DD/MM/YYYY'),
       dt_prazoReal: dayjs(this.formAnalista.controls['dt_prazoReal'].value).format('DD/MM/YYYY'),
     }
+    this.insertEsforco(payload)
 
-    console.log(payload)
+  }
+
+  insertEsforco(payload: InfosProjectResponsavel) {
+    this.infosAnalista.inserirEsforco(payload).subscribe((resposta) => {
+
+    })
 
   }
 

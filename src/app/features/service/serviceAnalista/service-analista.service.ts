@@ -1,6 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpBaseService } from 'src/app/shared/base/http-base.service';
+import { InfosProjectResponsavel } from '../../dashboard/models/tableInfosAnalistas/infosProjectResponsavel';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +31,8 @@ export class ServiceAnalista extends HttpBaseService {
     return this.httpGet(`getTiposAreas`)
   }
 
+  inserirEsforco(payload: InfosProjectResponsavel): Observable<any>{
+    return this.httpPost(`${this.endpoint}`,payload)
+  }
 
 }
