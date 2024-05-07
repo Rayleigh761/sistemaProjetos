@@ -9,8 +9,7 @@ const corsOptions = {
   optionsSuccessStatus: 200 // Algumas versões mais antigas do navegador podem precisar disso
 };
 
-app.use(cors(corsOptions));
-
+app.use(express.json());
 
 // Adicione o middleware cors
 app.use(cors());
@@ -115,21 +114,32 @@ app.post('/analista', async (req, res) => {
   try {
     // Supondo que os dados para inserção estejam no corpo da requisição
 
-    console.log(req.body);
-
     const pool = db.pool; // Obtém a referência do pool
     // Garante que a conexão esteja aberta
     if (!pool.connected) {
       await db.connect();
     }
 
-    // Query de chamada da stored procedure
+    const payload = req.body;
 
+    const queryString = `
+      EXEC proc_Infos_Responsaveis_Projetos @opcao = 'postInfosProjeto',
+      @CD_Projeto = '${payload.cd_projeto}',
+      @CD_Analista = '${payload.cd_nome}',
+      @CD_Tipo_Area = '${payload.cd_Tipo_Area}',
+      @CD_Tipo_Tecnologia = '${payload.cd_Tipo_Tecnologia}',
+      @QTD_Dias = '${payload.qtd_dias}',
+      @QTD_Dias_Real = '${payload.qtd_dias_real}',
+      @DT_Inicio = '${payload.dt_inicio}',
+      @DT_Inicio_Real = '${payload.dt_prazo}',
+      @DT_Prazo = '${payload.dt_prazo}',
+      @DT_Prazo_Real = '${payload.dt_inicioReal}',
+      @CD_Usuario_Cadastro = '1'
+    `;
+    //console.log(queryString);
 
     // Executa a query com os parâmetros
-    const result = await pool
-      .request()
-
+    await pool.request().query(queryString);
 
     res.status(201).json({ message: 'Inserção realizada com sucesso!' });
   } catch (error) {

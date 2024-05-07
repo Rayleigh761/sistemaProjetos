@@ -1,8 +1,9 @@
 export interface InfosProjectResponsavel {
-  DS_Tipo_Area: string;
-  DS_Tipo_Tecnologia: string;
+  cd_projeto: string;
+  cd_Tipo_Area: string;
+  cd_Tipo_Tecnologia: string;
   qtd_dias: string;
-  DS_NOME: string;
+  cd_nome: string;
   qtd_dias_real: string;
   dt_inicio: string;
   dt_prazo: string;
