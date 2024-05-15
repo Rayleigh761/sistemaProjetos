@@ -30,6 +30,7 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   bibTecnologia: BibTecnologia[] = [];
   bibAreas: BibAreas[] = [];
   formAnalista!: FormGroup;
+  infosResponsavelEdit!: InfosProjectResponsavel;
 
   id: string = '';
 
@@ -94,19 +95,38 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
     })
   }
 
+
+  buscarInfosAnalistaId(cdInfo: number ){
+    this.infosAnalista.getInfosAnalistaEdit(cdInfo)
+    .subscribe((infosResponsavel: InfosProjectResponsavel) => {
+      console.log(this.infosResponsavelEdit)
+        this.infosResponsavelEdit = infosResponsavel;
+        this.formAnalista.controls['cd_tipo_area'].setValue(infosResponsavel.cd_tipo_area)
+        this.formAnalista.controls['cd_tipo_tecnologia'].setValue(infosResponsavel.cd_tipo_tecnologia)
+        this.formAnalista.controls['cd_analista'].setValue(infosResponsavel.cd_analista)
+        this.formAnalista.controls['dt_inicio'].setValue(infosResponsavel.dt_inicio)
+        this.formAnalista.controls['dt_inicioReal'].setValue(infosResponsavel.dt_inicio_real)
+        this.formAnalista.controls['dt_prazo'].setValue(infosResponsavel.dt_prazo)
+        this.formAnalista.controls['dt_prazoReal'].setValue(infosResponsavel.dt_prazo_real)
+        this.formAnalista.controls['qtd_dias'].setValue(infosResponsavel.qtd_dias)
+        this.formAnalista.controls['qtd_dias_reais'].setValue(infosResponsavel.qtd_dias_real)
+    })
+  }
+
+
   salvarInfos() {
 
     const payload: InfosProjectResponsavel = {
       cd_projeto: this.id,
-      cd_Tipo_Area: this.formAnalista.controls['cd_tipo_area'].value,
-      cd_Tipo_Tecnologia: this.formAnalista.controls['cd_tipo_tecnologia'].value,
-      cd_nome: this.formAnalista.controls['cd_analista'].value,
+      cd_tipo_area: this.formAnalista.controls['cd_tipo_area'].value,
+      cd_tipo_tecnologia: this.formAnalista.controls['cd_tipo_tecnologia'].value,
+      cd_analista: this.formAnalista.controls['cd_analista'].value,
       qtd_dias: this.formAnalista.controls['qtd_dias'].value,
       qtd_dias_real: this.formAnalista.controls['qtd_dias_reais'].value,
-      dt_inicio: dayjs(this.formAnalista.controls['dt_inicio'].value).format('DD/MM/YYYY'),
-      dt_prazo: dayjs(this.formAnalista.controls['dt_prazo'].value).format('DD/MM/YYYY'),
-      dt_inicioReal: dayjs(this.formAnalista.controls['dt_inicioReal'].value).format('DD/MM/YYYY'),
-      dt_prazoReal: dayjs(this.formAnalista.controls['dt_prazoReal'].value).format('DD/MM/YYYY'),
+      dt_inicio: dayjs(this.formAnalista.controls['dt_inicio'].value).format('YYYY-MM-DD'),
+      dt_prazo: dayjs(this.formAnalista.controls['dt_prazo'].value).format('YYYY-MM-DD'),
+      dt_inicio_real: dayjs(this.formAnalista.controls['dt_inicioReal'].value).format('YYYY-MM-DD'),
+      dt_prazo_real: dayjs(this.formAnalista.controls['dt_prazoReal'].value).format('YYYY-MM-DD'),
     }
 
     this.insertEsforco(payload)
@@ -116,6 +136,7 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   insertEsforco(payload: InfosProjectResponsavel) {
     this.infosAnalista.inserirEsforco(payload).subscribe(() => {
       this.buscarInfosAnalista();
+      this.formAnalista.reset();
       this._snackBar.open('Informação inserida!', '', {
         duration: 2000,
         horizontalPosition: 'end'
@@ -124,13 +145,13 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   }
 
   deletaInfo(cdInfo: number ) {
-
-    this._snackBar.open('Informação Excluida!','',{
-      duration: 2000,
-      horizontalPosition: 'end'
+    this,this.infosAnalista.delInfosAnalista(cdInfo).subscribe(() => {
+      this.buscarInfosAnalista();
+      this._snackBar.open('Informação Excluida!','',{
+        duration: 2000,
+        horizontalPosition: 'end'
+      })
     })
-
-    console.log(cdInfo)
   }
 
 

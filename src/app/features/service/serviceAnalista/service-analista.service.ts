@@ -35,4 +35,12 @@ export class ServiceAnalista extends HttpBaseService {
     return this.httpPost(`${this.endpoint}`,payload)
   }
 
+  delInfosAnalista(id: number):Observable<any>{
+    return this.httpDelete(`${this.endpoint}/${id}`)
+  }
+
+  getInfosAnalistaEdit(id: number):Observable<any>{
+    return this.httpGet(`${this.endpoint}/edit/${id}`)
+  }
+
 }
