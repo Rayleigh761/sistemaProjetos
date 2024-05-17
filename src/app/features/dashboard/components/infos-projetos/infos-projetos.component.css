@@ -79,6 +79,12 @@ label {
   bottom: 20px; /* ou a distância que desejar do rodapé */
   left: 20px; /* ou a distância que desejar da esquerda */
   z-index: 999; /* ajuste conforme necessário */
+  opacity: 0; /* Inicialmente, o botão estará invisível */
+  transition: opacity 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.example-button-row.visible {
+  opacity: 1; /* Quando a classe 'visible' é adicionada, o botão torna-se visível */
 }
 
 .example-button-row .mat-mdc-button-base {

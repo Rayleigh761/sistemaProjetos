@@ -42,18 +42,18 @@
     </div>
 
   </mat-tab>
-  <mat-tab label="Long tab">
+  <mat-tab label="Historico de Atividades">
     <div class="example-large-box mat-elevation-z4">
       Large content
     </div>
   </mat-tab>
 </mat-tab-group>
 
-<div class="example-button-row">
+<div class="example-button-row" [class.visible]="isButtonVisible">
   <div class="example-flex-container">
     <div class="example-button-container">
       <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="retornarGrid()">
-        <mat-icon>reply</mat-icon>
+        <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
   </div>

@@ -5,6 +5,7 @@ const routes: Routes = [
 
   {path: '', redirectTo: 'grid', pathMatch: 'full'},
   {path: 'grid', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)},
+  {path: 'projeto', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)},
 ];
 
 @NgModule({

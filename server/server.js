@@ -136,7 +136,7 @@ app.post('/analista', async (req, res) => {
       @DT_Prazo_Real = '${payload.dt_prazo_real}',
       @CD_Usuario_Cadastro = '1'
     `;
-    console.log(queryString);
+    //console.log(queryString);
 
     // Executa a query com os parâmetros
     await pool.request().query(queryString);
@@ -187,7 +187,41 @@ app.get('/analista/edit/:id', async (req, res) => {
 
 });
 
+app.put('/analista/:id', async (req, res) => {
+  try {
+    // Supondo que os dados para inserção estejam no corpo da requisição
 
+    const pool = db.pool; // Obtém a referência do pool
+    // Garante que a conexão esteja aberta
+    if (!pool.connected) {
+      await db.connect();
+    }
+
+    const payload = req.body;
+
+    const queryString = `
+      EXEC proc_Infos_Responsaveis_Projetos @opcao = 'editInfoProjeto',
+      @CD_Info_Responsavel_Projeto = '${payload.cd_info_responsavel_projeto}',
+      @CD_Analista = '${payload.cd_analista}',
+      @CD_Tipo_Area = '${payload.cd_tipo_area}',
+      @CD_Tipo_Tecnologia = '${payload.cd_tipo_tecnologia}',
+      @QTD_Dias = '${payload.qtd_dias}',
+      @QTD_Dias_Real = '${payload.qtd_dias_real}',
+      @DT_Inicio = '${payload.dt_inicio}',
+      @DT_Inicio_Real = '${payload.dt_inicio_real}',
+      @DT_Prazo = '${payload.dt_prazo}',
+      @DT_Prazo_Real = '${payload.dt_prazo_real}'
+    `;
+    //console.log(queryString);
+
+    // Executa a query com os parâmetros
+    await pool.request().query(queryString);
+
+    res.status(201).json({ message: 'Inserção realizada com sucesso!' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 module.exports = router;

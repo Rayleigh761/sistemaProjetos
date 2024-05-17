@@ -1,5 +1,5 @@
-import { Component,OnInit } from '@angular/core';
-import { FormGroup,FormBuilder,Validators  } from '@angular/forms';
+import { Component,OnInit,HostListener  } from '@angular/core';
+import { FormGroup,FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormDataService } from '../../../service/serviceForms/form-data.service';
 import { InfoProject } from '../../models/infoProject/infoProject.model';
@@ -26,15 +26,11 @@ export class InfosProjetosComponent  implements OnInit {
     private projetoService: FormDataService
   ) {}
 
-
   ngOnInit(): void {
     this.criarFormulario();
     this.rota = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.url[1].path;
     this.buscarProjetoPeloId();
-
-    //console.log(this.formEntradas)
-    //debugger
   }
 
   buscarProjetoPeloId() {
@@ -47,7 +43,6 @@ export class InfosProjetosComponent  implements OnInit {
       this.formEntradas.controls['ds_status_atual'].setValue(infoProjeto.DS_Status);
       this.bibliotecaStatus();
     })
-
   }
 
   bibliotecaStatus() {
@@ -56,9 +51,7 @@ export class InfosProjetosComponent  implements OnInit {
     .subscribe((bibStatus: BibStatus[]) => {
       this.bibStatus = bibStatus
     })
-
   }
-
 
   criarFormulario() {
     this.formEntradas = this.formBuilder.group({
@@ -66,11 +59,19 @@ export class InfosProjetosComponent  implements OnInit {
       desc_escopo: { value: '', disabled: true },
       ds_status_atual: { value: '', disabled: true }
     });
+  }
 
+  isButtonVisible: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    this.isButtonVisible = scrollPosition > 300;  // Exibe o botão após 300px de rolagem
   }
 
   retornarGrid(){
-    this.router.navigate(['grid']);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

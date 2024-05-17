@@ -32,4 +32,8 @@ export class HttpBaseService {
     return this.httpClient.delete(`${this.apiBase}${endpoint}`)
   }
 
+  protected httpEdit(endpoint: string, dados: any): Observable<any>{
+    return this.httpClient.put(`${this.apiBase}${endpoint}`, dados)
+  }
+
 }

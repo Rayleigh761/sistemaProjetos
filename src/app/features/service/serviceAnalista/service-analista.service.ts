@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { HttpBaseService } from 'src/app/shared/base/http-base.service';
 import { InfosProjectResponsavel } from '../../dashboard/models/tableInfosAnalistas/infosProjectResponsavel';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -41,6 +40,10 @@ export class ServiceAnalista extends HttpBaseService {
 
   getInfosAnalistaEdit(id: number):Observable<any>{
     return this.httpGet(`${this.endpoint}/edit/${id}`)
+  }
+
+  putInfosAnalistaEdit(payload: InfosProjectResponsavel):Observable<any>{
+    return this.httpEdit(`${this.endpoint}/${payload.cd_info_responsavel_projeto}`,payload)
   }
 
 }

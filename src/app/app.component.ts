@@ -10,7 +10,7 @@ export class AppComponent {
 
   menus : any [] = [
     {descricao: 'Dashboard', rota: 'grid'},
-    {descricao: 'Novo Projeto', rota: ''},
+    {descricao: 'Novo Projeto', rota: 'projeto'},
   ]
 
 }

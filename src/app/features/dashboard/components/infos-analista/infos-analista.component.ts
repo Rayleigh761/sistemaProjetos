@@ -5,15 +5,14 @@ import { TableColumn } from '../../models/tableGrid/camposTable.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ColunasTabelaAnalistas } from './../../models/tableInfosAnalistas/camposTableAnalista.model';
 import { InfosProjectResponsavel } from './../../models/tableInfosAnalistas/infosProjectResponsavel';
 import { BibAnalistas } from '../../models/bibliotecas/bibAnalistas.model';
 import { BibTecnologia } from '../../models/bibliotecas/bibTipoTecnologia';
 import { BibAreas } from '../../models/bibliotecas/bibAreas';
 import { ServiceAnalista } from 'src/app/features/service/serviceAnalista/service-analista.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import * as dayjs from 'dayjs';
-
 
 @Component({
   selector: 'app-infos-analista',
@@ -31,6 +30,9 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   bibAreas: BibAreas[] = [];
   formAnalista!: FormGroup;
   infosResponsavelEdit!: InfosProjectResponsavel;
+
+  mostrarAdicionar: boolean = true;
+  mostrarAtualizarCancelar: boolean = false;
 
   id: string = '';
 
@@ -70,7 +72,6 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
 
   }
 
-
   bibliotecaAnalista() {
     this.infosAnalista
     .getBibiAnalista()
@@ -95,26 +96,37 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
     })
   }
 
-
   buscarInfosAnalistaId(cdInfo: number ){
+
     this.infosAnalista.getInfosAnalistaEdit(cdInfo)
     .subscribe((infosResponsavel: InfosProjectResponsavel) => {
-      console.log(this.infosResponsavelEdit)
-        this.infosResponsavelEdit = infosResponsavel;
-        this.formAnalista.controls['cd_tipo_area'].setValue(infosResponsavel.cd_tipo_area)
-        this.formAnalista.controls['cd_tipo_tecnologia'].setValue(infosResponsavel.cd_tipo_tecnologia)
-        this.formAnalista.controls['cd_analista'].setValue(infosResponsavel.cd_analista)
-        this.formAnalista.controls['dt_inicio'].setValue(infosResponsavel.dt_inicio)
-        this.formAnalista.controls['dt_inicioReal'].setValue(infosResponsavel.dt_inicio_real)
-        this.formAnalista.controls['dt_prazo'].setValue(infosResponsavel.dt_prazo)
-        this.formAnalista.controls['dt_prazoReal'].setValue(infosResponsavel.dt_prazo_real)
-        this.formAnalista.controls['qtd_dias'].setValue(infosResponsavel.qtd_dias)
-        this.formAnalista.controls['qtd_dias_reais'].setValue(infosResponsavel.qtd_dias_real)
+      this.infosResponsavelEdit = infosResponsavel;
+
+      // Função para converter string de data para objeto de data
+      const converterParaData = (dataString: string) => {
+        const [dia, mes, ano] = dataString.split('/');
+        return new Date(+ano, +mes - 1, +dia);
+      };
+
+      this.formAnalista.setValue({
+        cd_tipo_area: infosResponsavel.cd_tipo_area,
+        cd_tipo_tecnologia: infosResponsavel.cd_tipo_tecnologia,
+        cd_analista: infosResponsavel.cd_analista,
+        dt_inicio: converterParaData(infosResponsavel.dt_inicio),
+        dt_inicioReal: converterParaData(infosResponsavel.dt_inicio_real),
+        dt_prazo: converterParaData(infosResponsavel.dt_prazo),
+        dt_prazoReal: converterParaData(infosResponsavel.dt_prazo_real),
+        qtd_dias: infosResponsavel.qtd_dias,
+        qtd_dias_reais: infosResponsavel.qtd_dias_real
+      });
+
+      this.mostrarAdicionar = false
+      this.mostrarAtualizarCancelar = true
+
     })
   }
 
-
-  salvarInfos() {
+  salvarInfos(dsTipo: string) {
 
     const payload: InfosProjectResponsavel = {
       cd_projeto: this.id,
@@ -129,8 +141,12 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
       dt_prazo_real: dayjs(this.formAnalista.controls['dt_prazoReal'].value).format('YYYY-MM-DD'),
     }
 
-    this.insertEsforco(payload)
-
+    if(dsTipo == 'add'){
+      this.insertEsforco(payload)
+    }else{
+      payload.cd_info_responsavel_projeto = this.infosResponsavelEdit.cd_info_responsavel_projeto
+      this.editEsforco(payload)
+    }
   }
 
   insertEsforco(payload: InfosProjectResponsavel) {
@@ -154,7 +170,17 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
     })
   }
 
-
+  editEsforco(payload: InfosProjectResponsavel) {
+    this.infosAnalista.putInfosAnalistaEdit(payload).subscribe(() => {
+      this.buscarInfosAnalista();
+      this.formAnalista.reset();
+      this.cancelarInfos();
+      this._snackBar.open('Informação Editada!', '', {
+        duration: 2000,
+        horizontalPosition: 'end'
+      })
+    })
+  }
 
   criarFormularioAnalista() {
     this.formAnalista = this.formBuilder.group({
@@ -170,5 +196,10 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
     });
   }
 
+  cancelarInfos(){
+    this.formAnalista.reset();
+    this.mostrarAdicionar = true;
+    this.mostrarAtualizarCancelar = false;
+  }
 
 }

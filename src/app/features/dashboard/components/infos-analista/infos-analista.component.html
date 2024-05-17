@@ -119,8 +119,8 @@
 
 <div class="dvBtns">
   <div class="example-large-button">
-    <button mat-flat-button color="primary" (click)="salvarInfos()" [disabled]="!formAnalista.valid" >Adicionar</button>
-    <!--<button mat-flat-button color="primary">Atualizar</button>
-    <button mat-flat-button color="warn">Cancelar</button>-->
+    <button *ngIf="mostrarAdicionar" mat-flat-button color="primary" (click)="salvarInfos('add')" [disabled]="!formAnalista.valid" >Adicionar</button>
+    <button *ngIf="mostrarAtualizarCancelar" mat-flat-button color="primary" (click)="salvarInfos('alter')">Atualizar</button>
+    <button *ngIf="mostrarAtualizarCancelar" mat-flat-button color="warn" (click)="cancelarInfos()" >Cancelar</button>
   </div>
 </div>
