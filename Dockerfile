@@ -1,15 +1,13 @@
-FROM node:lts-alpine as angular
+FROM node:lts-alpine as build
 WORKDIR /app
-COPY package.json /app
-RUN npm install --silent
+COPY package*.json ./
+RUN npm ci
+RUN npm install -g @angular/cli
 COPY . .
-RUN npm run build
-
+RUN npm run build --prod
 
 FROM nginx:alpine
-VOLUME /var/cache/nginx
-COPY --from=angular app /usr/share/nginx/html
-COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/sistema-projetos /usr/share/nginx/html
 
 
 #docker build -t sistemaProjetos .
