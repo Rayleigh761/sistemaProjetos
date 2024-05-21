@@ -18,6 +18,7 @@ export class InfosProjetosComponent  implements OnInit {
   infoProjeto!: InfoProject;
   id: string = '';
   rota: string = '';
+  isButtonVisible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,12 +62,9 @@ export class InfosProjetosComponent  implements OnInit {
     });
   }
 
-  isButtonVisible: boolean = false;
-
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
+    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.isButtonVisible = scrollPosition > 300;  // Exibe o botão após 300px de rolagem
   }
 
