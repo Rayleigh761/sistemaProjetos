@@ -11,6 +11,7 @@ export class HttpBaseService {
 
   private readonly httpClient!: HttpClient;
   private apiBase = 'http://localhost:3000/';
+  //private apiBase = process.env['SERVER_API_BASE']
 
   constructor(protected readonly injector: Injector){
     if(injector == null || injector == undefined){
