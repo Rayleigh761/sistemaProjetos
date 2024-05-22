@@ -1,13 +1,18 @@
+
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');  // Importe o pacote cors
 const db = require('./connConfig/conn');
 const app = express();
-const port = 3000;
+//const port = 3000;
+const port = process.env.PORT || 3000;
 const router = express.Router();
+/*
 const corsOptions = {
   origin: 'http://localhost:4200', // Troque pelo endereço da sua aplicação Angular
   optionsSuccessStatus: 200 // Algumas versões mais antigas do navegador podem precisar disso
 };
+*/
 
 app.use(express.json());
 
@@ -19,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}`);
+  console.log(`O servidor está escutando em  http://localhost:${port}`);
 });
 
 app.get('/projetos', async (req, res) => {
