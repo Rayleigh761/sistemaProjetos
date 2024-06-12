@@ -1,0 +1,11 @@
+<!-- nav.component.html -->
+<div class="sidenav-header">
+  <h3>Menu</h3>
+  <!-- Ícones e nomes -->
+  <div class="menu-item" *ngFor="let menu of menus">
+    <a mat-button [routerLink]="menu.rota" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+      <span>{{ menu.descricao }}</span>
+    </a>
+  </div>
+</div>
