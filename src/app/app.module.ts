@@ -8,12 +8,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToolbarComponent } from './commom/components/toolbar/toolbar.component';
 import { LOCALE_ID } from '@angular/core';
+import { FooterComponent } from './commom/components/footer/footer.component';
+import { NavComponent } from './commom/components/nav/nav.component';
 
 
 @NgModule({
     declarations: [
       AppComponent,
-      ToolbarComponent
+      ToolbarComponent,
+      FooterComponent,
+      NavComponent
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
     bootstrap: [AppComponent],

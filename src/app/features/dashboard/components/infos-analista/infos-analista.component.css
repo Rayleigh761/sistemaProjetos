@@ -1,12 +1,11 @@
 .container-table {
   width: auto;
   min-height: 15vh;
-  background: #fff;
+  background: #fafafa;
   /*display: flex;*/
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-
 }
 
 .table100 {

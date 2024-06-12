@@ -1,2 +1,9 @@
-<app-toolbar [menus]="menus"></app-toolbar>
-<router-outlet></router-outlet>
+<!-- app.component.html -->
+<app-toolbar [drawer]="drawer"></app-toolbar>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <app-nav [menus]="menus"></app-nav>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
+<app-footer></app-footer>

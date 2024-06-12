@@ -1,13 +1,12 @@
 
 <div class="container-table">
-  <div>
     <mat-form-field appearance="outline" class="filter">
       <mat-label>Filtro</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="N Projeto" #input class="inputFilter">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table100 demo-table" matSort>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8  demo-table" matSort>
 
       <ng-container *ngFor="let column of displayedTableColumns" [matColumnDef]="column.field">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </th>
@@ -19,10 +18,8 @@
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell tdNosearch" colspan="6">Nenhum dado correspondente ao filtro: "{{input.value}}"</td>
+        <td class="mat-cell " colspan="6">Nenhum dado correspondente ao filtro: "{{input.value}}"</td>
       </tr>
     </table>
-    <mat-paginator class="mat-elevation-paginator matPaginator mat-cell" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
-  </div>
+    <mat-paginator class="mat-elevation-paginator  mat-cell disable-pagination" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
 </div>
-

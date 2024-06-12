@@ -1,4 +1,5 @@
-import { Component,Input,OnInit } from '@angular/core';
+import { Component,Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +10,15 @@ import { Router } from '@angular/router';
 export class ToolbarComponent {
 
   @Input() menus !: any[];
+  @Input() drawer !: MatDrawer
 
   constructor(
     private router: Router
   ){}
 
+
+  toggleDrawer() {
+    this.drawer.toggle();
+  }
 
 }

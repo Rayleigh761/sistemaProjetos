@@ -1,4 +1,7 @@
 <mat-toolbar color="primary">
+   <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <span>LEGALBOX</span>
   <span class="example-spacer"></span>
   <div class="menu-item" *ngFor="let menu of menus">
@@ -8,3 +11,4 @@
       <a (click)="sair()">Sair</a>
   </div>-->
 </mat-toolbar>
+
