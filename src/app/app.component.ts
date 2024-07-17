@@ -10,8 +10,8 @@ export class AppComponent {
   title = 'sistemaProjetos';
 
   menus : any [] = [
-    {descricao: 'Dashboard', rota: 'grid'},
-    {descricao: 'Novo Projeto', rota: 'projeto'},
+    {descricao: 'Dashboard', rota: 'grid', icons: 'dashboard'},
+    {descricao: 'Novo Projeto', rota: 'projeto', icons: 'note_add'},
   ]
 
 

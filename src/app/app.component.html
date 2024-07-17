@@ -1,7 +1,7 @@
 <!-- app.component.html -->
 <app-toolbar [drawer]="drawer"></app-toolbar>
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+  <mat-drawer #drawer class="sidenav" mode="side" opened="true">
     <app-nav [menus]="menus"></app-nav>
   </mat-drawer>
   <router-outlet></router-outlet>
