@@ -1,9 +1,9 @@
 <!-- app.component.html -->
-<app-toolbar [drawer]="drawer"></app-toolbar>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened="true">
+<mat-drawer-container autosize >
+  <app-toolbar [drawer]="drawer"></app-toolbar>
+  <mat-drawer #drawer mode="side" opened="true">
     <app-nav [menus]="menus"></app-nav>
   </mat-drawer>
-  <router-outlet></router-outlet>
+  <router-outlet ></router-outlet>
+  <app-footer></app-footer>
 </mat-drawer-container>
-<app-footer></app-footer>

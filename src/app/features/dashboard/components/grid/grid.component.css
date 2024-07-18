@@ -1,65 +1,29 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 
 .container-table {
-  width: 100%;
-  min-height: 100%;
-  height: 1000px;
-  padding: 33px 30px;
+  flex: 1; /* Permite que o container-table cresça para preencher o espaço disponível */
+  padding: 30px;
+  max-height: 100%; /* Garante que o container-table não exceda a altura do container pai */
+  min-height: 1000px; /* Define uma altura mínima para o container-table */
 }
+.container-table th {
+  font-family: 'GothamRounded';
+  font-size: 17px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.container-table td {
+  font-family: 'GothamRounded';
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+}
+
 
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
-}
-
-.table100 {
-  -webkit-border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  overflow: hidden;
-}
-
-.table100 th {
-  font-size: 18px;
-  color: #fff;
-  line-height: 1.4;
-  background-color: #3f51b5;
-  padding: 16px;
-}
-
-.table100 td {
-  font-family: Lato-Regular;
-  font-size: 15px;
-  color: gray;
-  line-height: 1.4;
-  background-color: #f2f2f2;
-  height: 50px;
-  padding: 10px 10px 18px 10px;
-  position: relative;
-}
-
-.table100 td:nth-child(2),
-.table100 th:nth-child(2) {
-  width: 750px;
-  white-space: nowrap;
-}
-
-
-.matPaginator {
-  -webkit-border-bottom-right-radius: 10px;
-  -webkit-border-bottom-left-radius: 10px;
-  -moz-border-radius-bottomright: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
 }
 
 .mat-elevation-paginator {
@@ -77,9 +41,6 @@
   margin: 0px 0px 10px 0px;
 }
 
-.tdNosearch {
-  padding: 30px 10px 30px 10px;
-}
 
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
@@ -88,7 +49,27 @@
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-  background-color: #fafafa;
-  color: #000;
+  background-color: #fafafa8f;
+  transition: color 0.3s ease; /* Transição suave para a cor do ícone */
 }
+
+.mat-mdc-row:hover .mat-mdc-cell:last-child {
+  position: relative;
+  overflow: hidden; /* Para que o gradiente não ultrapasse o limite do td */
+}
+
+.mat-mdc-row:hover .mat-mdc-cell:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5%; /* Ajuste a largura conforme necessário */
+  height: 100%;
+  background:#3f51b5; /* Gradiente de cor para a borda direita */
+}
+
+.mat-mdc-row:hover .mat-mdc-cell   {
+  color: #3f51b5; /* Cor do ícone ao passar o mouse */
+  transform: scale(1.03)
+}
+

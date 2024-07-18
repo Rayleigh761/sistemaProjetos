@@ -1,36 +1,5 @@
-/* app.component.css */
-.mat-drawer {
-  width: 240px;/* Largura do sidenav quando fechado parcialmente */
-  min-width: 56px; /* Largura mínima para não fechar completamente */
-  overflow: hidden; /* Esconde overflow para mostrar apenas ícones */
-  transition: width 0.3s ease; /* Transição suave para a largura */
-
-}
-
-.mat-drawer-content {
-  padding-left: 72px; /* Largura do sidenav quando fechado parcialmente */
-}
-
-.mat-drawer-inner-container {
+mat-drawer {
   display: flex;
-  flex-direction: column;
-}
-
-.mat-drawer:not(.opened) .menu-item {
-  width: 72px; /* Largura do sidenav quando não estiver completamente aberto */
-}
-
-.mat-drawer:not(.opened) .menu-item a {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 12px; /* Espaçamento interno das opções de menu */
-}
-
-.mat-drawer:not(.opened) .menu-item a span {
-  display: block; /* Mostra o texto das opções de menu */
-}
-
-.mat-drawer:not(.opened) .menu-item a mat-icon {
-  margin-right: 8px; /* Espaço entre o ícone e o texto */
+  position: fixed;
+  width: 300px;
 }
