@@ -8,13 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalInfosComponent } from './components/modal-infos/modal-infos.component';
 import { InfosProjetosComponent } from './components/infos-projetos/infos-projetos.component';
 import { InfosAnalistaComponent } from './components/infos-analista/infos-analista.component';
+import { StatusClassPipe } from './pipes/status-class.pipe';
 
 @NgModule({
   declarations: [
     GridComponent,
     ModalInfosComponent,
     InfosProjetosComponent,
-    InfosAnalistaComponent
+    InfosAnalistaComponent,
+    StatusClassPipe
   ],
   imports: [
     CommonModule,

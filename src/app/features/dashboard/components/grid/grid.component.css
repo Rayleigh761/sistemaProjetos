@@ -33,6 +33,10 @@
     0px 5px 0px 5px rgba(0, 0, 0, 0.014);
   color: gray;
   background-color: #ffffff;
+  font-family: 'GothamRounded';
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
 }
 
 .filter {
@@ -71,5 +75,72 @@
 .mat-mdc-row:hover .mat-mdc-cell   {
   color: #3f51b5; /* Cor do ícone ao passar o mouse */
   transform: scale(1.03)
+}
+
+.tdDescricao {
+  text-align: center;
+  padding: 15px;
+}
+
+div table th:nth-child(5){
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 20px;
+}
+
+div table td:nth-child(5){
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 10px;
+}
+
+.status-aprovado {
+  background: linear-gradient(135deg, #7ed957, #32cd32); /*(135deg, #7ed957, #32cd32)*/;
+  color: #ffffff;
+  border-radius: 25px;
+  padding: 5px 15px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+
+}
+.status-pendente {
+  background: linear-gradient(135deg, #f7d976, #f0be2a); /*(135deg, #f7d976, #f0be2a)*/;
+  color: #ffffff;
+  border-radius: 25px;
+  padding: 5px 15px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+}
+
+.status-rejeitado {
+  background: linear-gradient(135deg, #ff6f61, #ff3b30) /*(135deg, #ff6f61, #ff3b30)*/;
+  color: #ffffff;
+  border-radius: 25px;
+  padding: 5px 15px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+}
+
+.status-dimensionado {
+  background: linear-gradient(135deg, #6a8dff, #6a8dff);
+  color: #ffffff;
+  border-radius: 25px;
+  padding: 5px 15px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
 }
 

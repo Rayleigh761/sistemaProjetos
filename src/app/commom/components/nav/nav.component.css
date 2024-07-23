@@ -60,14 +60,6 @@
   font-weight: 500;
 }
 
-.sidenav-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  padding: 15px;
-  border-top: 1px solid #ccc;
-}
-
 .menu-item a {
   display: flex;
   align-items: center;
@@ -107,3 +99,27 @@
   color: #3f51b5;  /* 3f51b5cb*/
   transform: scale(1.02);
 }
+
+.sidenav-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 13px;
+  border-top: 1px solid #ccc;
+}
+
+.sidenav-footer button mat-icon {
+  margin-right: 8px; /* Espaço entre ícone e texto */
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease-out; /* Transição suave para a transformação */
+  width: 30px;
+  height: 30px;
+}
+
+.sidenav-footer button:hover  {
+  color: #3f51b5;  /* 3f51b5cb*/
+  transform: scale(1.03);
+}
+
