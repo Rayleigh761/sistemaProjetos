@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -9,6 +10,8 @@ import { TableColumn } from '../../models/tableGrid/camposTable.model';
 import { InfosProject } from '../../models/infosProject/infosProject.model';
 
 import { GridService } from '../../../service/serviceGrid/grid.service';
+import { ModalInfosComponent } from '../modal-infos/modal-infos.component';
+
 
 @Component({
   selector: 'app-grid',
@@ -27,8 +30,16 @@ export class GridComponent implements OnInit, AfterViewInit {
 
   constructor(
     private gridService: GridService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
+
+  openDialog(id:number) {
+    const dialogRef = this.dialog.open(ModalInfosComponent,{
+      data: {id}
+    });
+
+  }
 
   buscarProjetos() {
     this.gridService

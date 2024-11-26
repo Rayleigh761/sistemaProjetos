@@ -1,4 +1,4 @@
-import { Component,OnInit,HostListener  } from '@angular/core';
+import { Component,OnInit,HostListener,Input  } from '@angular/core';
 import { FormGroup,FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormDataService } from '../../../service/serviceForms/form-data.service';
@@ -16,9 +16,11 @@ export class InfosProjetosComponent  implements OnInit {
   bibStatus: BibStatus[] = [];
   formEntradas!: FormGroup;
   infoProjeto!: InfoProject;
-  id: string = '';
+  //id: string = '';
   rota: string = '';
   isButtonVisible: boolean = false;
+
+  @Input('id') idProjeto!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,14 +31,16 @@ export class InfosProjetosComponent  implements OnInit {
 
   ngOnInit(): void {
     this.criarFormulario();
-    this.rota = this.activatedRoute.snapshot.url[0].path;
-    this.id = this.activatedRoute.snapshot.url[1].path;
+    //this.rota = this.activatedRoute.snapshot.url[0].path;
+    //this.id = this.activatedRoute.snapshot.url[1].path;
+    this.idProjeto
+
     this.buscarProjetoPeloId();
   }
 
   buscarProjetoPeloId() {
     this.projetoService
-    .getProjetosId(parseInt(this.id))
+    .getProjetosId(this.idProjeto)
     .subscribe((infoProjeto: InfoProject) => {
       this.infoProjeto =  infoProjeto;
       this.formEntradas.controls['desc_projetos'].setValue(infoProjeto.DS_Descricao);

@@ -1,4 +1,4 @@
-import { Component,OnInit, ViewChild,AfterViewInit } from '@angular/core';
+import { Component,OnInit, ViewChild,AfterViewInit, Input } from '@angular/core';
 import { FormGroup,FormBuilder,Validators  } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TableColumn } from '../../models/tableGrid/camposTable.model';
@@ -36,6 +36,8 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
 
   id: string = '';
 
+  @Input('id') idProjeto!: number;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -47,7 +49,8 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.url[1].path;
+    //this.id = this.activatedRoute.snapshot.url[1].path;
+    this.idProjeto;
     this.criarFormularioAnalista();
     this.buscarInfosAnalista();
     this.bibliotecaAnalista();
@@ -57,7 +60,7 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
 
   buscarInfosAnalista() {
     this.infosAnalista
-    .getInfosAnalista(parseInt(this.id))
+    .getInfosAnalista(this.idProjeto)
     .subscribe((infosResponsavel: InfosProjectResponsavel[]) => {
       this.infosResponsavel = infosResponsavel;
       this.dataSource.data = this.infosResponsavel;
