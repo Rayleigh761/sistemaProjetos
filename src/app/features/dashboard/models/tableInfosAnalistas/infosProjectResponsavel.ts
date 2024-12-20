@@ -1,6 +1,6 @@
 export interface InfosProjectResponsavel {
   cd_info_responsavel_projeto?: number;
-  cd_projeto: string;
+  cd_projeto: number;
   cd_tipo_area: string;
   cd_tipo_tecnologia: string;
   qtd_dias: string;

@@ -1,6 +1,5 @@
 import { Component,OnInit, ViewChild,AfterViewInit, Input } from '@angular/core';
 import { FormGroup,FormBuilder,Validators  } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { TableColumn } from '../../models/tableGrid/camposTable.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -34,8 +33,6 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   mostrarAdicionar: boolean = true;
   mostrarAtualizarCancelar: boolean = false;
 
-  id: string = '';
-
   @Input('id') idProjeto!: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -43,13 +40,11 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
 
   constructor(
     private infosAnalista: ServiceAnalista,
-    private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    //this.id = this.activatedRoute.snapshot.url[1].path;
     this.idProjeto;
     this.criarFormularioAnalista();
     this.buscarInfosAnalista();
@@ -132,7 +127,7 @@ export class InfosAnalistaComponent  implements OnInit, AfterViewInit {
   salvarInfos(dsTipo: string) {
 
     const payload: InfosProjectResponsavel = {
-      cd_projeto: this.id,
+      cd_projeto: this.idProjeto,
       cd_tipo_area: this.formAnalista.controls['cd_tipo_area'].value,
       cd_tipo_tecnologia: this.formAnalista.controls['cd_tipo_tecnologia'].value,
       cd_analista: this.formAnalista.controls['cd_analista'].value,
